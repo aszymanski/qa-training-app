@@ -1,0 +1,2276 @@
+{
+	"info": {
+		"_postman_id": "abf6e2c9-967e-4c2b-9fe3-1307594b8a49",
+		"name": "Book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24204352",
+		"_collection_link": "https://universal-shadow-677057.postman.co/workspace/TrainingAPIAva~410c6273-6149-4cfc-881a-2b196b57afe3/collection/24204352-abf6e2c9-967e-4c2b-9fe3-1307594b8a49?action=share&creator=24204352&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Create Book empty body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.author).to.be.equals(\"key: 'author' should not be null\")\r",
+							"    pm.expect(data.bookName).to.be.equals(\"key: 'bookName' should not be null\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book short BookName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(\"Book name must be between 2 and 255 characters\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"bookName\", \"a\");\r",
+							"pm.collectionVariables.set(\"author\", utils.randomLetters(10));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookName\": \"{{bookName}}\",\r\n    \"author\": \"{{author}}\",\r\n    \"photos\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book long BookName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(\"Book name must be between 2 and 255 characters\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"bookName\", utils.randomLetters(256));\r",
+							"pm.collectionVariables.set(\"author\", utils.randomLetters(10));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookName\": \"{{bookName}}\",\r\n    \"author\": \"{{author}}\",\r\n    \"photos\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book short Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.author).to.be.equals(\"Author name must be between 2 and 255 characters\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"bookName\", utils.randomLetters(10));\r",
+							"pm.collectionVariables.set(\"author\", \"a\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookName\": \"{{bookName}}\",\r\n    \"author\": \"{{author}}\",\r\n    \"photos\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book long Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.author).to.be.equals(\"Author name must be between 2 and 255 characters\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"bookName\", utils.randomLetters(10));\r",
+							"pm.collectionVariables.set(\"author\", utils.randomLetters(256));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookName\": \"{{bookName}}\",\r\n    \"author\": \"{{author}}\",\r\n    \"photos\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"\r",
+							"    pm.collectionVariables.set(\"id\", data.id)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"bookName\", utils.randomLetters(10));\r",
+							"pm.collectionVariables.set(\"author\", utils.randomLetters(10));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookName\": \"{{bookName}}\",\r\n    \"author\": \"{{author}}\",\r\n    \"photos\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Books - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Books - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    data.forEach(function(item){\r",
+							"        pm.expect(item).to.have.property(\"id\");\r",
+							"        pm.expect(item).to.have.property(\"bookName\");\r",
+							"        pm.expect(item).to.have.property(\"author\");\r",
+							"        pm.expect(item).to.have.property(\"photos\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Books - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    data.forEach(function(item){\r",
+							"        pm.expect(item).to.be.an(\"object\");\r",
+							"        pm.expect(item.id).to.be.an(\"number\")\r",
+							"        pm.expect(item.bookName).to.be.an(\"string\")\r",
+							"        pm.expect(item.author).to.be.an(\"string\")\r",
+							"        pm.expect(item.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Get Books -duplicate validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    var result =  data.findAll(item => item.id == pm.collectionVariables.get(\"id\"));\r",
+							"        pm.expect(result).to.be.length(1)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Books -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    var result =  data.find(item => item.id == pm.collectionVariables.get(\"id\"));\r",
+							"        pm.expect(result.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"        pm.expect(result.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"        pm.expect(result.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/books",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"bookName\", utils.randomLetters(10));\r",
+							"pm.collectionVariables.set(\"author\", utils.randomLetters(10));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookName\": \"{{bookName}}\",\r\n    \"author\": \"{{author}}\",\r\n    \"photos\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Book empty body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.author).to.be.equals(\"key: 'author' should not be null\")\r",
+							"    pm.expect(data.bookName).to.be.equals(\"key: 'bookName' should not be null\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH bookName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"bookName\", utils.randomLetters(10));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookName\": \"{{bookName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH bookName null ignored",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookName\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"author\", utils.randomLetters(10));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"author\": \"{{author}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH author null ignored",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"author\":null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Photo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Photo - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Photo - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"url\");\r",
+							"    pm.expect(data).to.have.property(\"description\");\r",
+							"\r",
+							"    pm.collectionVariables.set(\"photoId\", data.id)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Photo - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.url).to.be.an(\"string\")\r",
+							"    pm.expect(data.description).to.be.an(\"string\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Photo -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.url).to.be.equals(pm.collectionVariables.get(\"url\"))\r",
+							"    pm.expect(data.description).to.be.equals(pm.collectionVariables.get(\"description\"))\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"url\", utils.randomLetters(10));\r",
+							"pm.collectionVariables.set(\"description\", utils.randomLetters(10));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\": \"{{url}}\",\r\n    \"description\": \"{{description}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/photo",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"photo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH photo not allowed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.photos).to.be.empty;\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"photos\": [\r\n        {\r\n            \"id\": {{photoId}},\r\n            \"url\": \"{{url}}\",\r\n            \"description\": \"{{description}}\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH photo not existed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var photoId = pm.collectionVariables.get(\"photoId\");\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.error).to.be.equals(\"Photo with that id: \"+photoId+\" is not found or cannot by modified.\")\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.collectionVariables.set(\"url_noExisted\", utils.randomLetters(10));\r",
+							"pm.collectionVariables.set(\"description_noExisted\", utils.randomLetters(10));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookName\": \"{{bookName}}\",\r\n    \"author\": \"{{author}}\",\r\n    \"photos\": [\r\n        {\r\n            \"id\": {{photoId}},\r\n            \"url\": \"{{url_noExisted}}\",\r\n            \"description\": \"{{description_noExisted}}}\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH photo not existed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var photoId = pm.collectionVariables.get(\"photoId\");\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.error).to.be.equals(\"Photo with that id: \"+photoId+\" is not found or cannot by modified.\")\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"url_noExisted\", utils.randomLetters(10));\r",
+							"pm.collectionVariables.set(\"description_noExisted\", utils.randomLetters(10));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"photos\": [\r\n        {\r\n            \"id\": {{photoId}},\r\n            \"url\": \"{{url_noExisted}}\",\r\n            \"description\": \"{{description_noExisted}}}\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Photo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function (){",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Get Photo - property validation\", function()",
+							"{",
+							"    var data = pm.response.json();",
+							"    pm.expect(data).to.have.property(\"id\");",
+							"    pm.expect(data).to.have.property(\"url\");",
+							"    pm.expect(data).to.have.property(\"description\");",
+							"});",
+							"",
+							"pm.test(\"Get Book - type property validation\", function()",
+							"{",
+							"    var data = pm.response.json();",
+							"    pm.expect(data).to.be.an(\"object\");",
+							"    pm.expect(data.id).to.be.an(\"number\")",
+							"    pm.expect(data.url).to.be.an(\"string\")",
+							"    pm.expect(data.description).to.be.an(\"string\")    ",
+							"});",
+							"",
+							"pm.test(\"Create Book -value validation\", function()",
+							"{",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.id).to.be.equals(pm.collectionVariables.get(\"photoId\"))",
+							"    pm.expect(data.url).to.be.equals(pm.collectionVariables.get(\"url\"))",
+							"    pm.expect(data.description).to.be.equals(pm.collectionVariables.get(\"description\"))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/photo/{{photoId}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"photo",
+						"{{photoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Photos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Photos - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Photos - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    data.forEach(function(item){\r",
+							"        pm.expect(item).to.have.property(\"id\");\r",
+							"        pm.expect(item).to.have.property(\"url\");\r",
+							"        pm.expect(item).to.have.property(\"description\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Photos - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    data.forEach(function(item){\r",
+							"        pm.expect(item).to.be.an(\"object\");\r",
+							"        pm.expect(item.id).to.be.an(\"number\")\r",
+							"        pm.expect(item.url).to.be.an(\"string\")\r",
+							"        pm.expect(item.description).to.be.an(\"string\")\r",
+							"    \r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Photos -duplicate validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    var result =  data.findAll(item => item.id == pm.collectionVariables.get(\"photoId\"));\r",
+							"        pm.expect(result).to.be.length(1)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Photos -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    var result =  data.find(item => item.id == pm.collectionVariables.get(\"photoId\"));\r",
+							"        pm.expect(result.url).to.be.equals(pm.collectionVariables.get(\"url\"))\r",
+							"        pm.expect(result.description).to.be.equals(pm.collectionVariables.get(\"description\"))\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/photo",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"photo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Photo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Put Photo - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Put Photo - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"url\");\r",
+							"    pm.expect(data).to.have.property(\"description\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Put Photo - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.url).to.be.an(\"string\")\r",
+							"    pm.expect(data.description).to.be.an(\"string\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Put Photo -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.url).to.be.equals(pm.collectionVariables.get(\"url\"))\r",
+							"    pm.expect(data.description).to.be.equals(pm.collectionVariables.get(\"description\"))\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"url\", utils.randomLetters(10));\r",
+							"pm.collectionVariables.set(\"description\", utils.randomLetters(10));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\": \"{{url}}\",\r\n    \"description\": \"{{description}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/photo/{{photoId}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"photo",
+						"{{photoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Photo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function (){",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Get Photo - property validation\", function()",
+							"{",
+							"    var data = pm.response.json();",
+							"    pm.expect(data).to.have.property(\"id\");",
+							"    pm.expect(data).to.have.property(\"url\");",
+							"    pm.expect(data).to.have.property(\"description\");",
+							"});",
+							"",
+							"pm.test(\"Get Book - type property validation\", function()",
+							"{",
+							"    var data = pm.response.json();",
+							"    pm.expect(data).to.be.an(\"object\");",
+							"    pm.expect(data.id).to.be.an(\"number\")",
+							"    pm.expect(data.url).to.be.an(\"string\")",
+							"    pm.expect(data.description).to.be.an(\"string\")    ",
+							"});",
+							"",
+							"pm.test(\"Create Book -value validation\", function()",
+							"{",
+							"    var data = pm.response.json();",
+							"    pm.expect(data.id).to.be.equals(pm.collectionVariables.get(\"photoId\"))",
+							"    pm.expect(data.url).to.be.equals(pm.collectionVariables.get(\"url\"))",
+							"    pm.expect(data.description).to.be.equals(pm.collectionVariables.get(\"description\"))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/photo/{{photoId}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"photo",
+						"{{photoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Photo to Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"    pm.expect(data.photos[0].id).to.be.equals(pm.collectionVariables.get(\"photoId\"))\r",
+							"    pm.expect(data.photos[0].url).to.be.equals(pm.collectionVariables.get(\"url\"))\r",
+							"    pm.expect(data.photos[0].description).to.be.equals(pm.collectionVariables.get(\"description\"))\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{photoId}},\r\n    \"url\": \"{{url}}\",\r\n    \"description\": \"{{description}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}/photo",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}",
+						"photo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add the same Photo to Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var photoId = pm.collectionVariables.get(\"photoId\");\r",
+							"    var id = pm.collectionVariables.get(\"id\");\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.error).to.be.equals(\"Photo with that id: \"+photoId+\" already exist in that book: \"+id+\" \")\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{photoId}},\r\n    \"url\": \"{{url}}\",\r\n    \"description\": \"{{description}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}/photo",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}",
+						"photo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Book with Photo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -duplicates validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    var result =  data.photos.findAll(item => item.id == pm.collectionVariables.get(\"photoId\"));\r",
+							"    pm.expect(result).to.be.length(1)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"\r",
+							"    var result =  data.photos.findAll(item => item.id == pm.collectionVariables.get(\"photoId\"));\r",
+							"    pm.expect(result).to.be.length(1)\r",
+							"\r",
+							"    pm.expect(data.photos[0].id).to.be.equals(pm.collectionVariables.get(\"photoId\"))\r",
+							"    pm.expect(data.photos[0].url).to.be.equals(pm.collectionVariables.get(\"url\"))\r",
+							"    pm.expect(data.photos[0].description).to.be.equals(pm.collectionVariables.get(\"description\"))\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete PHOTO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete Photo - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Delete Photo -error validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.error).to.be.equals(\"Photo cannot be deleted because its in use.\")\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/photo/{{photoId}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"photo",
+						"{{photoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Book with Photo not deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.have.property(\"id\");\r",
+							"    pm.expect(data).to.have.property(\"bookName\");\r",
+							"    pm.expect(data).to.have.property(\"author\");\r",
+							"    pm.expect(data).to.have.property(\"photos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"object\");\r",
+							"    pm.expect(data.id).to.be.an(\"number\")\r",
+							"    pm.expect(data.bookName).to.be.an(\"string\")\r",
+							"    pm.expect(data.author).to.be.an(\"string\")\r",
+							"    pm.expect(data.photos).to.be.an(\"array\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -duplicates validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    var result =  data.photos.findAll(item => item.id == pm.collectionVariables.get(\"photoId\"));\r",
+							"    pm.expect(result).to.be.length(1)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create Book -value validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.bookName).to.be.equals(pm.collectionVariables.get(\"bookName\"))\r",
+							"    pm.expect(data.author).to.be.equals(pm.collectionVariables.get(\"author\"))\r",
+							"\r",
+							"    var result =  data.photos.findAll(item => item.id == pm.collectionVariables.get(\"photoId\"));\r",
+							"    pm.expect(result).to.be.length(1)\r",
+							"\r",
+							"    pm.expect(data.photos[0].id).to.be.equals(pm.collectionVariables.get(\"photoId\"))\r",
+							"    pm.expect(data.photos[0].url).to.be.equals(pm.collectionVariables.get(\"url\"))\r",
+							"    pm.expect(data.photos[0].description).to.be.equals(pm.collectionVariables.get(\"description\"))\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete BOOK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete BOOK deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Delete Book -value validation\", function()\r",
+							"{\r",
+							"    var id = pm.collectionVariables.get(\"id\");\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.error).to.be.equals(\"Book with that id: \"+id+\" is not found\")\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Book - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Book -value validation\", function()\r",
+							"{\r",
+							"    var id = pm.collectionVariables.get(\"id\");\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.error).to.be.equals(\"Book with that id: \"+id+\" is not found\")\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/book/{{id}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"book",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete PHOTO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete Photo - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base-url}}/photo/{{photoId}}",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"photo",
+						"{{photoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Photos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Photos - status validation\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Photos - property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    data.forEach(function(item){\r",
+							"        pm.expect(item).to.have.property(\"id\");\r",
+							"        pm.expect(item).to.have.property(\"url\");\r",
+							"        pm.expect(item).to.have.property(\"description\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Photos - type property validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    data.forEach(function(item){\r",
+							"        pm.expect(item).to.be.an(\"object\");\r",
+							"        pm.expect(item.id).to.be.an(\"number\")\r",
+							"        pm.expect(item.url).to.be.an(\"string\")\r",
+							"        pm.expect(item.description).to.be.an(\"string\")\r",
+							"    \r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get Photos -duplicate validation\", function()\r",
+							"{\r",
+							"    var data = pm.response.json();\r",
+							"    var result =  data.findAll(item => item.id == pm.collectionVariables.get(\"photoId\"));\r",
+							"        pm.expect(result).to.be.length(0)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": \"ffff\",\r\n    \"bookName\": \"bbbb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/photo",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"photo"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"utils = {",
+					"    randomLetters: function(lenght){",
+					"        var result= '';",
+					"        var characters = \"ABCDEFGHIJKLMNOPRSTUWXYZabcdefghijklmoprstuwxyz0123456789\";",
+					"        var characterLenght = characters.length;",
+					"",
+					"        for(var i=0; i<lenght;i++ ){",
+					"            result += characters.charAt(Math.floor(Math.random() * characterLenght)) ",
+					"        }",
+					"        return result;",
+					"    },",
+					"    randomNumberMax: function(max){",
+					"        return Math.floor(Math.random() * max);",
+					"    }",
+					"",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
